@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.2"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
 
-    <persistence-unit name="NewPersistenceUnit"/>
+    <persistence-unit name="mysqlPU" transaction-type="JTA">
+        <description>This is my persistence unit.</description>
+        <jta-data-source>jdbc/dps</jta-data-source>
+        <!--<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>-->
+        <class>pe.edu.upc.demoweb6.model.entity.Customer</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="hibernate.show_sql" value="true" />
+        </properties>
+    </persistence-unit>
 </persistence>
